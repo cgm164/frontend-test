@@ -1,17 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { LocalStorageCache, StorageProvider } from "./core/storage";
+import "./index.css";
+import ProductDetailsPage from "./pages/ProductDetails/ProductDetails.page";
+import ProductListPage from "./pages/ProductList/ProductList.page";
+import "./theme.css";
+import Header from "./ui/Header/Header";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
+const cacheProvider = new LocalStorageCache({
+  cacheTime: 1000 * 60 * 60, // 1 hour
+});
+
 root.render(
   <React.StrictMode>
-    <App />
+    <StorageProvider provider={cacheProvider}>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<ProductListPage />} />
+          <Route path="/:productId" element={<ProductDetailsPage />} />
+        </Routes>
+      </BrowserRouter>
+    </StorageProvider>
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

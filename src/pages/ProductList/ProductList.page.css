@@ -1,0 +1,15 @@
+.product-list-page {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: end;
+    gap: 20px;
+}
+
+.product-list-page__header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+}
