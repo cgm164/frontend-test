@@ -3,8 +3,10 @@
 ## Librerías utilizadas y motivación 
 
 Para esta prueba, las tecnologías utilizadas han sido: 
-- Reactjs
+- Reactjs (JSX)
 - CSS
+
+Por petición expresa de la prueba, se ha realizado todo el código en ES6 Javascript sin utilizar Typescript.
 
 Se ha buscado utilizar las menores dependencias posibles para la creación de la aplicación con el fin de mostrar un manejo más profundo de JS. Es por ello, que únicamente se utiliza una librería de enrutado: `react-router`
 
@@ -13,16 +15,16 @@ La librería de persistencia de estado se ha creado desde **cero**. Hoy en día 
 
 - **Librerías de estado de cliente**: Se utilizan para administrar el estado de la aplicación en el cliente. Algunos ejemplos son: `redux`, `mobX` o `zustand`
 
-Para esta prueba, he decidido crear  un mini-librería para gestionar el estado del servidor inspirada en `react-query` y `swr`. El objetivo es lograr el almacenamiento 
+Para esta prueba, he decidido crear un mini-librería para gestionar el estado del servidor inspirada en `react-query` y `swr`. El objetivo es lograr el almacenamiento 
 en cache de las peticiones y realizar mutaciones optimistas sobre dicho almacenamiento. 
 
-La implementación se puede encontrar en `src/core/storage`. La idea es tener un clase proveedor de cache que gestionará la persistencia de los datos y un contexto de React que lo encapsulará. El proveedor será el encargada de eliminar los datos cuanto estos expiren y notificar a los observadores que esten subscritos a estos cambios. Por otra parte, existirán dos hooks (`useQuery` y `useMutation`) que se encargarán de llamar al proveedor para mantener los datos en el cliente actualizados y sincronizar dichos datos con el servidor.  
+La implementación se puede encontrar en `src/core/storage`. La idea es tener un clase proveedor de cache que gestionará la persistencia de los datos y un contexto de React que lo encapsulará. El proveedor será el encargado de eliminar los datos cuanto estos expiren y notificar a los observadores que esten subscritos a estos cambios. Por otra parte, existirán dos hooks (`useQuery` y `useMutation`) que se encargarán de llamar al proveedor para mantener los datos en el cliente actualizados y sincronizar dichos datos con el servidor.  
 
-Por otra parte, para el buscador se ha implementado un debounce para evitar renderizaciones innecesarias de los elementos del DOM. La implementación se puede encontrar en `src/core/debounce`.
+Para el buscador se ha implementado un debounce para evitar renderizaciones innecesarias de los elementos en el DOM. La implementación se puede encontrar en `src/core/debounce`.
 
 ## Instalación
 
-Para ejecutar la aplicación previamente se deben de haber instalado las dependencias: 
+Para ejecutar la aplicación previamente se deben de haber instalado las dependencias. Para ello, basta con ejecutar:
 
 ```
 npm install
