@@ -25,6 +25,22 @@ class BaseCache {
   set(key, value) {
     throw new Error("Abstract method.");
   }
+
+  /**
+   * @param {string} key
+   * @param {(data) => void} callback
+   */
+  subcribe(key, callback) {
+    throw new Error("Abstract method.");
+  }
+
+  /**
+   * @param {string} key
+   * @param {(data) => void} callback
+   */
+  unsubcriber(key, callback) {
+    throw new Error("Abstract method.");
+  }
 }
 
 export default BaseCache;

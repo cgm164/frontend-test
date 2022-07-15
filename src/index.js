@@ -6,7 +6,7 @@ import "./index.css";
 import ProductDetailsPage from "./pages/ProductDetails/ProductDetails.page";
 import ProductListPage from "./pages/ProductList/ProductList.page";
 import "./theme.css";
-import Header from "./ui/Header/Header";
+import { Header } from "./ui/Header";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const cacheProvider = new LocalStorageCache({

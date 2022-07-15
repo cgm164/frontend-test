@@ -1,10 +1,6 @@
 import SearchIcon from "../icons/Search.icon";
 import "./SearchInput.css";
 
-/**
- * @param {{ onChange: (value: string) => void}} props
- */
-
 const SearchInput = (props) => {
   const { onChange } = props;
 

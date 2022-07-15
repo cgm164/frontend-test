@@ -1,19 +1,19 @@
 .header {
-    position: sticky;
-    top: 0;
-    z-index: 1;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
-.header__logo-container {
+.header__topbar-container {
   background-color: var(--primary-color);
 }
 
-.header__logo-wrapper {
-    display: flex;
-    align-items: center;
-    
-    width: 100%;
-    height: 58px;
+.header__hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 58px;
 }
 
 .header__logo-link {
@@ -29,15 +29,15 @@
 }
 
 .header__breadcrumbs-container {
-    background-color: white;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+  background-color: white;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .header__breadcrumb {
-    transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .header__breadcrumb:hover {
-    color: var(--primary-color);
+  color: var(--primary-color);
 }

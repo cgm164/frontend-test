@@ -50,3 +50,33 @@
   font-weight: 600;
   color: var(--primary-color);
 }
+
+@media (max-width: 768px) {
+  .product-list {
+    gap: 1.5rem 0.5rem;
+    justify-content: space-between;
+  }
+
+  .product-item__img-container img {
+    width: 100px;
+  }
+}
+
+@media (max-width: 420px) {
+  .product-list {
+    gap: 1.5rem 1rem;
+    justify-content: space-between;
+  }
+
+  .product-item {
+    flex: 1 1 0;
+  }
+
+  .product-item__img-container {
+    padding: 1rem;
+  }
+
+  .product-item__img-container img {
+    width: 80px;
+  }
+}

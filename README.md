@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# FrontEnd Test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Librerías utilizadas y motivación 
 
-## Available Scripts
+Para esta prueba, las tecnologías utilizadas han sido: 
+- Reactjs
+- CSS
 
-In the project directory, you can run:
+Se ha buscado utilizar las menores dependencias posibles para la creación de la aplicación con el fin de mostrar un manejo más profundo de JS. Es por ello, que únicamente se utiliza una librería de enrutado: `react-router`
 
-### `npm start`
+La librería de persistencia de estado se ha creado desde **cero**. Hoy en día existen varias maneras de gestionar la persistencia de datos, algunas de estas son: 
+- **Librerías de estado del servidor**: son responsables de administrar las operaciones asíncronas entre un servidor y el cliente. Algunos ejemplos son: `react-query` o `swr`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Librerías de estado de cliente**: Se utilizan para administrar el estado de la aplicación en el cliente. Algunos ejemplos son: `redux`, `mobX` o `zustand`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Para esta prueba, he decidido crear  un mini-librería para gestionar el estado del servidor inspirada en `react-query` y `swr`. El objetivo es lograr el almacenamiento 
+en cache de las peticiones y realizar mutaciones optimistas sobre dicho almacenamiento. 
 
-### `npm test`
+La implementación se puede encontrar en `src/core/storage`. La idea es tener un clase proveedor de cache que gestionará la persistencia de los datos y un contexto de React que lo encapsulará. El proveedor será el encargada de eliminar los datos cuanto estos expiren y notificar a los observadores que esten subscritos a estos cambios. Por otra parte, existirán dos hooks (`useQuery` y `useMutation`) que se encargarán de llamar al proveedor para mantener los datos en el cliente actualizados y sincronizar dichos datos con el servidor.  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Por otra parte, para el buscador se ha implementado un debounce para evitar renderizaciones innecesarias de los elementos del DOM. La implementación se puede encontrar en `src/core/debounce`.
 
-### `npm run build`
+## Instalación
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Para ejecutar la aplicación previamente se deben de haber instalado las dependencias: 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+o si está utilizando el gestor `yarn`: 
 
-### `npm run eject`
+```
+yarn
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Comandos disponibles
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+En el directorio del proyecto, puedes ejecutar los siguientes comandos:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### `npm start` o `yarn start`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Ejecuta la aplicación en modo desarrollo.\
+Puede navegar hacia [http://localhost:3000](http://localhost:3000) 
+en su navegador para ver la aplicación.
 
-## Learn More
+La página se recargará de manera automática al detectar cambios
+en los ficheros.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### `npm run build` o `yarn build`
+ 
+Construye la aplicación para producción en la carpeta `build`.
+Agrupa el código de la carpeta `src` de React en modo de producción y optimiza la compilación para obtener el mejor rendimiento.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+La compilación está minificada y los nombres de los archivos incluyen los hashes.
 
-### Code Splitting
+### `npm run test` o `yarn test`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Ejecuta los test. Ya que es una prueba técnica y no se requería, no se ha implementado ninguno.
 
-### Analyzing the Bundle Size
+### `npm run lint` o `yarn lint`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Ejecuta el linter sobre el código existente en `src`.

@@ -7,6 +7,7 @@ class LocalStorageCache extends BaseCache {
    */
   constructor(props) {
     super(props);
+    this.subscribers = {};
     if (typeof localStorage === "undefined") {
       throw new Error("LocalStorage is not available for this browser");
     }
@@ -17,18 +18,14 @@ class LocalStorageCache extends BaseCache {
    */
   get(key) {
     const item = parseJsonSafe(localStorage.getItem(key));
-    console.info("[LocalStorageCache](" + key + ") Getting cache...");
 
-    if (!item) 
-      return null; 
+    if (!item) return null;
 
     if (item.expiry < Date.now()) {
-      console.info(`[LocalStorageCache](${key}): Cache expired for key `);
       localStorage.removeItem(key);
       return null;
     }
-    
-    console.info(`[LocalStorageCache](${key}) TurboCache!!!`);
+
     return item.value;
   }
 
@@ -36,16 +33,39 @@ class LocalStorageCache extends BaseCache {
    * @param {string} key
    */
   set(key, object) {
-    console.info("[LocalStorageCache](" + key + ") Setting cache...");
     const itemToStore = stringifyJsonSafe(object);
-    
+
     if (itemToStore) {
       const item = {
         expiry: Date.now() + this.cacheTime,
         value: object,
       };
-      console.info(`[LocalStorageCache](${key}) Storing cache`);
       localStorage.setItem(key, stringifyJsonSafe(item));
+
+      if (this.subscribers[key]) {
+        this.subscribers[key].forEach((callback) => {
+          callback(item.value);
+        });
+      }
+    }
+  }
+
+  /**
+   * @param {string} key
+   * @param {(data) => void} callback
+   */
+  subcribe(key, callback) {
+    if (!this.subscribers[key]) {
+      this.subscribers[key] = [];
+    }
+    this.subscribers[key].push(callback);
+  }
+
+  unsubcriber(key, callback) {
+    if (this.subscribers[key]) {
+      this.subscribers[key] = this.subscribers[key].filter(
+        (subscriber) => subscriber !== callback
+      );
     }
   }
 }

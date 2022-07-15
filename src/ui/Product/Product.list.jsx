@@ -1,18 +1,6 @@
 import ProductItem from "./Product.item";
-import './Product.css';
+import './Product.list.css';
 
-/**
- *
- * @param {{
- *  items: { brand: string,
- *           model: string,
- *           price: string,
- *           imgUrl: string,
- *           id: string
- * }[]
- * }} props
- * @returns
- */
 const ProductList = (props) => {
   const { items } = props;
   return (

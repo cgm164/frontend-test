@@ -1,10 +1,6 @@
 import React from "react";
 import StorageContext from "./Storage.context";
-import BaseCache from "./provider/BaseCache.provider";
 
-/**
- * @returns {BaseCache}
- */
 const useStorage = () => {
   const useStorage = React.useContext(StorageContext);
 
